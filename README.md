@@ -4,7 +4,8 @@ A new Flutter application.
 
 ##The Rules Of The Master (Branch)
 
-    #All UI components and screens have been zipped in a file called UI_components_and_screens.
+    #All UI components, screens and distributions have been zipped in a file called UI_components_and_screens.
+    #Files of the dashboard screens can be found in Screens/DashboardUis and should be edited accordingly
 
 In the components folder There is the "TheColors.dart" file for colors
 
@@ -111,5 +112,5 @@ void main() {
 
 Try and make the names of the classes in a file same as the file name so we cant all read well.
 
-    #Longer Variable Names are better than short ones with no meaning.
-    #NEVER !, I REPEAT NEVER! COMMIT TO THE MASTER/MAIN BRANCH. CREATE A NEW BRANCH TO WORK FROM
+    # Longer Variable Names are better than short ones with no meaning.
+    # NEVER !, I REPEAT NEVER! COMMIT TO THE MASTER/MAIN BRANCH. CREATE A NEW BRANCH TO WORK FROM

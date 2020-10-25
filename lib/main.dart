@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rentersparadise/Screens/TestScreen.dart';
+import 'package:rentersparadise/Screens/DashboardScreen.dart';
 
 import 'app_state/WalkThroughState.dart';
 void main() {
@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       ),
       home:
       // Put Your Entry Widget here
-      TestScreen(),
+      DashboardScreen(),
     );
   }
 }
