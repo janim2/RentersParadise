@@ -36,7 +36,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Scaffold(
       appBar: AppBar(
         title: Text("EXPLORE",
-        style: TextStyle(fontSize: 27.0,
+        style: TextStyle(fontSize: 27.0, fontFamily: "Aveniir",
             color: Colors.white),),
       ),
       body: tabs[currentTabIndex],

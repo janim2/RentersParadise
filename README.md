@@ -4,8 +4,8 @@ A new Flutter application.
 
 ##The Rules Of The Master (Branch)
 
-    #All UI components, screens and distributions have been zipped in a file called UI_components_and_screens.
-    #Files of the dashboard screens can be found in Screens/DashboardUis and should be edited accordingly
+   # All UI components, screens and distributions have been zipped in a file called UI_components_and_screens.
+   # Files of the dashboard screens can be found in Screens/DashboardUis and should be edited accordingly
 
 In the components folder There is the "TheColors.dart" file for colors
 
