@@ -110,6 +110,13 @@ void main() {
 
 ....
 
+# FONTS
+   // POPPINS (Used for Headings)
+
+   //FUTURA (Used for Regular texts)
+
+   //AVENIR NEXT CONDENSED (Used for Screen Headings)
+
 Try and make the names of the classes in a file same as the file name so we cant all read well.
 
     # Longer Variable Names are better than short ones with no meaning.
