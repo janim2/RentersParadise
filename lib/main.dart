@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rentersparadise/Screens/DashboardScreen.dart';
-
+//import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
+//import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/NewsScreen.dart';
+//import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/ExploreScreen.dart';
+//import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/ItemScreen.dart';
 import 'app_state/WalkThroughState.dart';
 void main() {
   runApp(
@@ -50,6 +53,10 @@ class MyApp extends StatelessWidget {
       home:
       // Put Your Entry Widget here
       DashboardScreen(),
+       //IntroScreens(),
+       //NewsScreen(),
+      //ItemScreen(),
+      //ExploreScreen(),
     );
   }
 }
