@@ -5,7 +5,10 @@ import 'package:rentersparadise/Screens/DashboardScreen.dart';
 //import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/NewsScreen.dart';
 //import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/ExploreScreen.dart';
 //import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/ItemScreen.dart';
+import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/AddPropertyScreen2.dart';
 import 'app_state/WalkThroughState.dart';
+import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/AddPropertyScreen3.dart';
+
 void main() {
   runApp(
 
@@ -57,6 +60,8 @@ class MyApp extends StatelessWidget {
        //NewsScreen(),
       //ItemScreen(),
       //ExploreScreen(),
+      //AddPropertyScreen2(),
+     // AddPropertyScreen3(),
     );
   }
 }

@@ -3,6 +3,8 @@ import 'package:rentersparadise/Components/BottomAppBarButton.dart';
 import 'package:rentersparadise/Components/PropertyCardTypes.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
 //import 'package:rentersparadise/Screens/Explore_Item_News_Onboarding_Screens/IntroScreens.dart';
+import 'package:rentersparadise/Components/SubTitle.dart';
+
 
 Color lightDefaultColor = Color(0xFFEE892F);
 
@@ -13,7 +15,7 @@ const activeCardColor = Color(0xFFEE892F);
 const activeCardTextColor = Colors.white;
 
 const inActiveCardColor = Color(0xFFEDEDED);
-const inActiveCardTextColor = Color(0xFFC1C1C1);
+const inActiveCardTextColor = Colors.grey;
 
 enum Cards {
   Houses,
@@ -271,6 +273,7 @@ class _ExploreScreenState extends State<ExploreScreen> {
             data: SliderTheme.of(context).copyWith(
               activeTrackColor: TheColors.orange,
               inactiveTrackColor: inActiveCardTextColor,
+              trackHeight: 4,
               thumbColor: TheColors.orange,
               overlayColor: inActiveCardTextColor,
               thumbShape: RoundSliderThumbShape(enabledThumbRadius: 15.0),
@@ -295,26 +298,4 @@ class _ExploreScreenState extends State<ExploreScreen> {
   }
 }
 
-class SubTitle extends StatelessWidget {
-
-  SubTitle({@required this.title});
-
-  final String title;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(left: 20,top:30),
-      child: Text(
-        title,
-        style: TextStyle(
-          fontSize: 28,
-          color: TheColors.violet,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    );
-  }
-}
 
