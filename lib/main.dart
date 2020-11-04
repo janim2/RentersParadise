@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Screens/DashboardScreen.dart';
 
 import 'app_state/WalkThroughState.dart';
@@ -42,10 +43,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
+      title: 'Renters Paradise',
       theme: ThemeData(
         primarySwatch: colorCustom,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        primaryColor: TheColors.orange,
       ),
       home:
       // Put Your Entry Widget here
