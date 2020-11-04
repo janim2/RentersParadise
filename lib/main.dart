@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
+import 'package:rentersparadise/Screens/Add_Property.dart';
+import 'package:rentersparadise/Screens/Add_property_success.dart';
 import 'package:rentersparadise/Screens/DashboardScreen.dart';
 
 import 'app_state/WalkThroughState.dart';
