@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/CustomBoxShadow.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
-import 'package:rentersparadise/Screens/account/signin.dart';
+import 'package:rentersparadise/Screens/account/Usersignin.dart';
 
 class ProceedRegistration extends StatefulWidget {
   @override
@@ -51,7 +51,7 @@ class _ProceedRegistrationState extends State<ProceedRegistration> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => SignIn()));
+                                MaterialPageRoute(builder: (_) => UserSignIn()));
                           },
                           child: Text(
                             "Sign In",

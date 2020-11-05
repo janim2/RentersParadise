@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/CustomBoxShadow.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
-import 'package:rentersparadise/Screens/account/signin.dart';
+import 'package:rentersparadise/Screens/account/proceed_registration.dart';
+import 'package:rentersparadise/Screens/account/Usersignin.dart';
 
 class Registration extends StatefulWidget {
   @override
@@ -51,7 +52,7 @@ class _RegistrationState extends State<Registration> {
                         GestureDetector(
                           onTap: () {
                             Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => SignIn()));
+                                MaterialPageRoute(builder: (_) => UserSignIn()));
                           },
                           child: Text(
                             "Sign In",
@@ -141,7 +142,10 @@ class _RegistrationState extends State<Registration> {
               SizedBox(height: 40),
               RaisedButton(
                 color: TheColors.orange,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => ProceedRegistration()));
+                  },
                 child: SizedBox(
                   width: screenWidth - 70,
                   height: 60,

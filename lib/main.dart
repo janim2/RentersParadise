@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Screens/Add_Property.dart';
 import 'package:rentersparadise/Screens/Add_property_success.dart';
-import 'package:rentersparadise/Screens/DashboardScreen.dart';
-
+import 'package:rentersparadise/Screens/UserDashboardScreen.dart';
+import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
+import 'package:rentersparadise/Screens/splash_screen.dart';
 import 'app_state/WalkThroughState.dart';
 void main() {
   runApp(
@@ -24,7 +24,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
 
-
   static Map<int, Color> color = {
     50: Color.fromRGBO(230, 120, 23, .1),
     100: Color.fromRGBO(230, 120, 23, .2),
@@ -38,7 +37,7 @@ class MyApp extends StatelessWidget {
     900: Color.fromRGBO(230, 120, 23, 1),
   };
 
-  final MaterialColor colorCustom = MaterialColor(0xffFCB30D, color);
+  final MaterialColor colorCustom = MaterialColor(0xffe67f17, color);
 
 
   @override
@@ -49,11 +48,11 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: colorCustom,
         visualDensity: VisualDensity.adaptivePlatformDensity,
-        primaryColor: TheColors.orange,
       ),
       home:
       // Put Your Entry Widget here
-      DashboardScreen(),
+      MySplashScreenPage(),
+//    Add_property_success(),
     );
   }
 }
