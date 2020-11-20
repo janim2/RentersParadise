@@ -52,12 +52,12 @@ class Users {
     userType = map['userType'];
     profilePicture = map['profilePicture'];
     firstName = map['firstName'];
-    lastName = map['streetName'];
-    email = map['parking'];
-    phoneNumber = map['price'];
-    residentialAddress = map['uploaderId'];
-    password = map['duration'];
-    dateRegistered = map['features'];
+    lastName = map['lastName'];
+    email = map['email'];
+    phoneNumber = map['phoneNumber'];
+    residentialAddress = map['residentialAddress'];
+    password = map['password'];
+    dateRegistered = map['dateRegistered'];
     viewsRemaining = map['viewsRemaining'];
   }
 }
