@@ -58,6 +58,6 @@ class Users {
     residentialAddress = map['uploaderId'];
     password = map['duration'];
     dateRegistered = map['features'];
-    viewsRemaining = map['views'];
+    viewsRemaining = map['viewsRemaining'];
   }
 }
