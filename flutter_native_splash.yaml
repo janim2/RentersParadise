@@ -1,0 +1,7 @@
+flutter_native_splash:
+  image: assets/RENDERS-PARADISE-LOGO-1.png
+  color: “FFFFFF”
+  fill: true
+  android: false
+  ios: false
+
