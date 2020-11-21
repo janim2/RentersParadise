@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
+import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
+import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
 
 class SettingsPage extends StatefulWidget {
 
@@ -9,6 +11,8 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -88,25 +92,31 @@ class _SettingsPageState extends State<SettingsPage> {
               Divider(
                 color: Colors.black,
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Image(
-                    color: Colors.grey,
-                    alignment: Alignment.topLeft,
-                    image: AssetImage("assets/power.png"),
-                  ),
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
-                    child: Column(
-                      children: [
-                        Container(
-                            margin: EdgeInsets.fromLTRB(0, 15, 0, 0),child: Text("Log out", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
-                        Text("Log out from all devices", style: TextStyle(color: Colors.grey, fontSize: 17),)
-                      ],
+              GestureDetector(
+                onTap: (){
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => IntroScreens()));
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Image(
+                      color: Colors.grey,
+                      alignment: Alignment.topLeft,
+                      image: AssetImage("assets/power.png"),
                     ),
-                  )
-                ],
+                    Padding(
+                      padding: const EdgeInsets.all(12.0),
+                      child: Column(
+                        children: [
+                          Container(
+                              margin: EdgeInsets.fromLTRB(0, 15, 0, 0),child: Text("Log out", style: TextStyle(color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),)),
+                          Text("Log out from all devices", style: TextStyle(color: Colors.grey, fontSize: 17),)
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
               SizedBox(
                 height: 15,
@@ -139,5 +149,10 @@ class _SettingsPageState extends State<SettingsPage> {
         )
       ],
     );
+  }
+
+  @override
+  void initState() {
+    appBloc.updateTitle('SETTINGS');
   }
 }
