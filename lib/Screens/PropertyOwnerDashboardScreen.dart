@@ -1,16 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
-import 'package:rentersparadise/Screens/Add_Property.dart';
+import 'package:rentersparadise/Screens/DashboardUis/AddPage.dart';
 import 'package:rentersparadise/Screens/DashboardUis/HomeOwnerPage.dart';
-
-import 'DashboardUis/AddPage.dart';
-import 'DashboardUis/FavouritesPage.dart';
-import 'DashboardUis/HomePage.dart';
-import 'DashboardUis/NewsPage.dart';
-import 'DashboardUis/Notifications.dart';
-import 'DashboardUis/SearchPage.dart';
-import 'DashboardUis/SettingsPage.dart';
+import 'package:rentersparadise/Screens/DashboardUis/NewsPage.dart';
+import 'package:rentersparadise/Screens/DashboardUis/Notifications.dart';
 
 class PropertyOwnerDashboardScreen extends StatefulWidget {
   @override
@@ -124,7 +118,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
                 color: Colors.grey,
                 size: 30.0,
               ),
-              title: new Text(''), backgroundColor: Colors.white),
+             label: '', backgroundColor: Colors.white),
 //          BottomNavigationBarItem(
 //              activeIcon: ImageIcon(
 //                AssetImage("assets/search_icon.png"),
@@ -137,7 +131,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
 //                size: 30.0,
 //
 //              ),
-//              title: new Text(''), backgroundColor: Colors.white
+//             label: '', backgroundColor: Colors.white
 //          ),
           BottomNavigationBarItem(
               activeIcon: ImageIcon(
@@ -151,7 +145,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
                 size: 30.0,
 
               ),
-              title: Text(''), backgroundColor: Colors.white
+             label: '', backgroundColor: Colors.white
           ),
           BottomNavigationBarItem(
               activeIcon: ImageIcon(
@@ -165,7 +159,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
                 size: 30.0,
 
               ),
-              title: Text(''), backgroundColor: Colors.white
+             label: '', backgroundColor: Colors.white
           ),
 //          BottomNavigationBarItem(
 //              activeIcon: ImageIcon(
@@ -179,7 +173,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
 //                size: 30.0,
 //
 //              ),
-//              title: Text(''), backgroundColor: Colors.white
+//             label: '', backgroundColor: Colors.white
 //          ),
 //          BottomNavigationBarItem(
 //              activeIcon: ImageIcon(
@@ -193,7 +187,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
 //                size: 30.0,
 //
 //              ),
-//              title: Text(''), backgroundColor: Colors.white
+//             label: '', backgroundColor: Colors.white
 //          ),
           BottomNavigationBarItem(
               activeIcon: ImageIcon(
@@ -207,7 +201,7 @@ class _PropertyOwnerDashboardScreenState extends State<PropertyOwnerDashboardScr
                 size: 30.0,
 
               ),
-              title: Text(''), backgroundColor: Colors.white
+             label: '', backgroundColor: Colors.white
           ),
         ],
       ),
