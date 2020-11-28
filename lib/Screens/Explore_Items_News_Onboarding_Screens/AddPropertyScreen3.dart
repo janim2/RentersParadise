@@ -81,7 +81,7 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
           buttonText: 'Post Property',
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => Add_property_success()));
+                builder: (BuildContext context) => AddPropertySuccess()));
           },
         ),
       ),
@@ -400,7 +400,6 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
             //Price
             SubTitle(title: 'Price'),
             PriceInputField(),
-
           ],
         ),
       ),
@@ -418,13 +417,14 @@ class PriceInputField extends StatelessWidget {
     return Container(
       // width: 40,
       child: Padding(
-        padding: const EdgeInsets.only(left: 15, right: 200, top: 10,bottom: 18),
+        padding:
+            const EdgeInsets.only(left: 15, right: 200, top: 10, bottom: 18),
         child: Material(
           elevation: 20,
           borderRadius: BorderRadius.circular(5),
           child: Center(
             child: TextField(
-              cursorColor:TheColors.orange,
+              cursorColor: TheColors.orange,
               decoration: InputDecoration(
                 hintText: " Enter Price",
                 hintStyle: kDropDownMenuItemsTextStyle,
@@ -448,9 +448,7 @@ class PriceInputField extends StatelessWidget {
                 ),
               ),
               keyboardType: TextInputType.number,
-              inputFormatters: [
-                WhitelistingTextInputFormatter.digitsOnly
-              ],
+              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
             ),
           ),
         ),
