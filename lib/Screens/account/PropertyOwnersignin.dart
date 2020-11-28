@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/CustomBoxShadow.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
-import 'package:rentersparadise/Screens/UserDashboardScreen.dart';
 import 'package:rentersparadise/Screens/account/registration.dart';
 
 import '../PropertyOwnerDashboardScreen.dart';

@@ -2,7 +2,6 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
-import 'package:rentersparadise/Screens/Add_Property.dart';
 import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/AddPropertyScreen2.dart';
 
 
@@ -142,6 +141,7 @@ class _AddPageState extends State<AddPage> {
 
   @override
   void initState() {
+    super.initState();
     appBloc.updateTitle('ADD PROPERTY');
   }
 }
