@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/customCard.dart';
 import 'package:rentersparadise/Components/searchTextBox.dart';
-import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
 import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/ExploreScreen.dart';
 import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/ItemScreen.dart';
-import '../UserDashboardScreen.dart';
 
 class HomePage extends StatefulWidget {
   final Function openDrawer;
