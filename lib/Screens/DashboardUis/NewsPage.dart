@@ -30,6 +30,7 @@ class _NewsPageState extends State<NewsPage> {
 
   @override
   void initState() {
+    super.initState();
     appBloc.updateTitle('NEWS');
 
   }
