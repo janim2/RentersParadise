@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
 import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
 
@@ -153,6 +152,7 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   void initState() {
+    super.initState();
     appBloc.updateTitle('SETTINGS');
   }
 }

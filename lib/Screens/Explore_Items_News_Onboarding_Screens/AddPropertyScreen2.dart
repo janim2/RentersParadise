@@ -4,7 +4,6 @@ import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Components/SubTitle.dart';
 import 'package:rentersparadise/Components/PropertyCardTypes.dart';
 import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/AddPropertyScreen3.dart';
-import 'package:rentersparadise/Screens/PropertyOwnerDashboardScreen.dart';
 
 const kMaximumSliderValue = 10000000.0;
 const kMinimumSliderValue = 0.0;

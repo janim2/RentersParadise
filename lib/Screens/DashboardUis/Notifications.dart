@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
 
 class Notifications extends StatefulWidget {
@@ -125,6 +124,7 @@ class _NotificationsState extends State<Notifications> {
 
   @override
   void initState() {
+    super.initState();
     appBloc.updateTitle('NOTIFICATION');
   }
 
