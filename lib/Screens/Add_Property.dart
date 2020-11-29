@@ -11,13 +11,13 @@ const inActiveCardTextColor = Color(0xFFC1C1C1);
 const kMaximumSliderValue = 10000000.0;
 const kMinimumSliderValue = 0.0;
 
-class Add_Property extends StatefulWidget {
+class AddProperty extends StatefulWidget {
 
   @override
-  _Add_PropertyPageState createState() => _Add_PropertyPageState();
+  _AddPropertyPageState createState() => _AddPropertyPageState();
 }
 
-class _Add_PropertyPageState extends State<Add_Property> {
+class _AddPropertyPageState extends State<AddProperty> {
 
   int price = 1000000;
 

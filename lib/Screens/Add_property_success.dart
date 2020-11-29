@@ -4,13 +4,13 @@ import 'package:flutter/rendering.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Screens/PropertyOwnerDashboardScreen.dart';
 
-class Add_property_success extends StatefulWidget {
+class AddPropertySuccess extends StatefulWidget {
 
   @override
-  _Add_property_successScreenState createState() => _Add_property_successScreenState();
+  _AddPropertySuccessScreenState createState() => _AddPropertySuccessScreenState();
 }
 
-class _Add_property_successScreenState extends State<Add_property_success> {
+class _AddPropertySuccessScreenState extends State<AddPropertySuccess> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
