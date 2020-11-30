@@ -49,7 +49,7 @@ class _NewsScreenState extends State<NewsScreen> {
                       color: Colors.grey,
                       size: 30.0,
                     ),
-                    title: new Text(''),
+                    label: '',
                     backgroundColor: Colors.white),
                 BottomNavigationBarItem(
                     activeIcon: ImageIcon(
@@ -62,7 +62,7 @@ class _NewsScreenState extends State<NewsScreen> {
                       color: Colors.grey,
                       size: 30.0,
                     ),
-                    title: new Text(''),
+                    label: '',
                     backgroundColor: Colors.white),
                 BottomNavigationBarItem(
                     activeIcon: ImageIcon(
@@ -75,7 +75,7 @@ class _NewsScreenState extends State<NewsScreen> {
                       color: Colors.grey,
                       size: 30.0,
                     ),
-                    title: new Text(''),
+                    label: '',
                     backgroundColor: Colors.white),
                 BottomNavigationBarItem(
                     activeIcon: ImageIcon(
@@ -88,7 +88,7 @@ class _NewsScreenState extends State<NewsScreen> {
                       color: Colors.grey,
                       size: 30.0,
                     ),
-                    title: new Text(''),
+                    label: '',
                     backgroundColor: Colors.white),
               ]),
         ),

@@ -1,29 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:rentersparadise/Screens/Add_Property.dart';
-import 'package:rentersparadise/Screens/Add_property_success.dart';
-import 'package:rentersparadise/Screens/UserDashboardScreen.dart';
-import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
 import 'package:rentersparadise/Screens/splash_screen.dart';
 import 'app_state/WalkThroughState.dart';
+
 void main() {
   runApp(
+    MultiProvider(providers: [
+      ChangeNotifierProvider<WalkThroughState>(
+          create: (context) => WalkThroughState()),
 
-    MultiProvider(
-
-        providers: [
-
-          ChangeNotifierProvider<WalkThroughState>(create: (context) =>  WalkThroughState()),
-
-          // Put The New State Class you create
-          //  ChangeNotifierProvider<YourNewStateClass>(create: (context) =>  YourNewStateClass()),
-        ],
-        child: MyApp()),
+      // Put The New State Class you create
+      //  ChangeNotifierProvider<YourNewStateClass>(create: (context) =>  YourNewStateClass()),
+    ], child: MyApp()),
   );
 }
 
 class MyApp extends StatelessWidget {
-
   static Map<int, Color> color = {
     50: Color.fromRGBO(230, 120, 23, .1),
     100: Color.fromRGBO(230, 120, 23, .2),
@@ -39,7 +31,6 @@ class MyApp extends StatelessWidget {
 
   final MaterialColor colorCustom = MaterialColor(0xffe67f17, color);
 
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -50,9 +41,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home:
-      // Put Your Entry Widget here
-      MySplashScreenPage(),
-//    Add_property_success(),
+          // Put Your Entry Widget here
+          MySplashScreenPage(),
+//    AddPropertySuccess(),
     );
   }
 }

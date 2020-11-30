@@ -2,11 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
 
-import 'DashboardUis/AddPage.dart';
 import 'DashboardUis/FavouritesPage.dart';
 import 'DashboardUis/HomePage.dart';
-import 'DashboardUis/NewsPage.dart';
-import 'DashboardUis/Notifications.dart';
 import 'DashboardUis/SearchPage.dart';
 import 'DashboardUis/SettingsPage.dart';
 
@@ -121,7 +118,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
                 color: Colors.grey,
                 size: 30.0,
               ),
-              title: new Text(''), backgroundColor: Colors.white),
+             label: '', backgroundColor: Colors.white),
           BottomNavigationBarItem(
               activeIcon: ImageIcon(
                 AssetImage("assets/search_icon.png"),
@@ -134,7 +131,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
                 size: 30.0,
 
               ),
-              title: new Text(''), backgroundColor: Colors.white
+             label: '', backgroundColor: Colors.white
           ),
 //          BottomNavigationBarItem(
 //              activeIcon: ImageIcon(
@@ -148,7 +145,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
 //                size: 30.0,
 //
 //              ),
-//              title: Text(''), backgroundColor: Colors.white
+//             label: '', backgroundColor: Colors.white
 //          ),
 //          BottomNavigationBarItem(
 //              activeIcon: ImageIcon(
@@ -162,7 +159,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
 //                size: 30.0,
 //
 //              ),
-//              title: Text(''), backgroundColor: Colors.white
+//             label: '', backgroundColor: Colors.white
 //          ),
           BottomNavigationBarItem(
               activeIcon: ImageIcon(
@@ -176,7 +173,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
                 size: 30.0,
 
               ),
-              title: Text(''), backgroundColor: Colors.white
+             label: '', backgroundColor: Colors.white
           ),
           BottomNavigationBarItem(
               activeIcon: ImageIcon(
@@ -190,7 +187,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
                 size: 30.0,
 
               ),
-              title: Text(''), backgroundColor: Colors.white
+             label: '', backgroundColor: Colors.white
           ),
 //          BottomNavigationBarItem(
 //              activeIcon: ImageIcon(
@@ -204,7 +201,7 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
 //                size: 30.0,
 //
 //              ),
-//              title: Text(''), backgroundColor: Colors.white
+//             label: '', backgroundColor: Colors.white
 //          ),
         ],
       ),

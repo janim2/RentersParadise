@@ -1,14 +1,8 @@
 import 'dart:async';
-// import 'package:flutter/cupertino.dart';
+
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
-import 'package:rentersparadise/Screens/account/proceed_registration.dart';
 import 'package:rentersparadise/Screens/onboarding.dart';
-// import 'package:provider/provider.dart';
-// import 'package:rentersparadise/Components/ConfirmButton.dart';
-//import 'package:rentersparadise/Components/ConfirmButton.dart';
-//import 'package:rentersparadise/Screens/UserDashboardScreen.dart';
-// import 'package:rentersparadise/app_state/WalkThroughState.dart';
 
 class IntroScreens extends StatefulWidget {
   @override

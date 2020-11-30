@@ -62,7 +62,7 @@ class _FavouritesPageState extends State<FavouritesPage> {
             SizedBox(
               height: 50,
             ),
-            customCardWithHeart(
+            CustomCardWithHeart(
               imageNathan: _imageNathan,
               imageBed: _imageBed,
               imageBath: _imageBath,

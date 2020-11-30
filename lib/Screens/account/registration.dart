@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/CustomBoxShadow.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
-import 'package:rentersparadise/Screens/account/proceed_registration.dart';
 import 'package:rentersparadise/Screens/account/Usersignin.dart';
 
 class Registration extends StatefulWidget {
@@ -10,6 +9,7 @@ class Registration extends StatefulWidget {
 }
 
 class _RegistrationState extends State<Registration> {
+  bool _proceedWithRegistration = false;
   @override
   Widget build(BuildContext context) {
     double screenWidth = MediaQuery.of(context).size.width;
@@ -51,8 +51,8 @@ class _RegistrationState extends State<Registration> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (_) => UserSignIn()));
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (_) => UserSignIn()));
                           },
                           child: Text(
                             "Sign In",
@@ -87,88 +87,165 @@ class _RegistrationState extends State<Registration> {
                 ),
               ),
               SizedBox(height: 30),
-              CustomBoxShadow(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "First Name",
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              CustomBoxShadow(
-                child: TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "Last Name",
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              CustomBoxShadow(
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Phone Number",
-                    border: InputBorder.none,
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-              CustomBoxShadow(
-                child: TextFormField(
-                  keyboardType: TextInputType.number,
-                  decoration: InputDecoration(
-                    hintText: "Residential Address",
-                    focusedBorder: InputBorder.none,
-                    enabledBorder: InputBorder.none,
-                    errorBorder: InputBorder.none,
-                    disabledBorder: InputBorder.none,
-                  ),
-                ),
-              ),
-              SizedBox(height: 40),
-              RaisedButton(
-                color: TheColors.orange,
-                onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext context) => ProceedRegistration()));
-                  },
-                child: SizedBox(
-                  width: screenWidth - 70,
-                  height: 60,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Proceed",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 25,
+              Offstage(
+                offstage: _proceedWithRegistration,
+                child: Column(
+                  children: [
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "First Name",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
                         ),
                       ),
-                      SizedBox(
-                        width: 50,
+                    ),
+                    SizedBox(height: 20),
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Last Name",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
                       ),
-                      Icon(Icons.arrow_forward, color: Colors.white, size: 30)
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: 20),
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "Phone Number",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        keyboardType: TextInputType.number,
+                        decoration: InputDecoration(
+                          hintText: "Residential Address",
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 40),
+                    RaisedButton(
+                      color: TheColors.orange,
+                      onPressed: () {
+                        setState(() {
+                          _proceedWithRegistration = true;
+                        });
+                      },
+                      child: SizedBox(
+                        width: screenWidth - 70,
+                        height: 60,
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Text(
+                              "Proceed",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 25,
+                              ),
+                            ),
+                            SizedBox(
+                              width: 50,
+                            ),
+                            Icon(Icons.arrow_forward,
+                                color: Colors.white, size: 30)
+                          ],
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                    ),
+                  ],
                 ),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.all(Radius.circular(20))),
               ),
+              Offstage(
+                offstage: !_proceedWithRegistration,
+                child: Column(
+                  children: [
+                    SizedBox(height: 30),
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "Email Address",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Password",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 20),
+                    CustomBoxShadow(
+                      child: TextFormField(
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          hintText: "Confirm Password",
+                          border: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          errorBorder: InputBorder.none,
+                          disabledBorder: InputBorder.none,
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 40),
+                    RaisedButton(
+                      color: TheColors.orange,
+                      onPressed: () {},
+                      child: SizedBox(
+                        width: screenWidth - 70,
+                        height: 60,
+                        child: Center(
+                          child: Text(
+                            "Register",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 25,
+                            ),
+                          ),
+                        ),
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(20))),
+                    ),
+                  ],
+                ),
+              )
             ],
           ),
         ),

@@ -4,8 +4,6 @@ import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Screens/UserDashboardScreen.dart';
 import 'package:rentersparadise/Screens/account/registration.dart';
 
-import '../PropertyOwnerDashboardScreen.dart';
-
 class UserSignIn extends StatefulWidget {
   @override
   _UserSignInState createState() => _UserSignInState();

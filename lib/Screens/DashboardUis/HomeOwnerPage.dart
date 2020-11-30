@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:rentersparadise/Components/customCard.dart';
 import 'package:rentersparadise/Components/customPropertyOwnerCard.dart';
 import 'package:rentersparadise/Components/searchTextBox.dart';
 import 'package:rentersparadise/Screens/Add_Property.dart';
@@ -105,7 +104,7 @@ class _HomeOwnerPageState extends State<HomeOwnerPage> {
             ),),
             GestureDetector(onTap: (){
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => Add_Property()));
+                  builder: (BuildContext context) => AddProperty()));
             },child: Icon(Icons.add_box,color: Colors.indigo,size: 40,))
           ],
         ),

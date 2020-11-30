@@ -4,9 +4,9 @@ import 'package:rentersparadise/Components/contactButton.dart';
 /*
 * custom card class created to display information about
 * homes and apartments*/
-class customCardWithHeart extends StatefulWidget {
+class CustomCardWithHeart extends StatefulWidget {
   @override
-  _customCardWithHeartState createState() => _customCardWithHeartState();
+  _CustomCardWithHeartState createState() => _CustomCardWithHeartState();
 
   final AssetImage imageNathan;
   final AssetImage imageBed;
@@ -19,10 +19,10 @@ class customCardWithHeart extends StatefulWidget {
   * @param imageBed - image representing bed
   * @param imageBath - image representing bathhouses
   * @param imageCarFill -  image representing car parks*/
-  customCardWithHeart({Key key, @required this.imageNathan, @required this.imageBed, @required this.imageBath, @required this.imageCarFill});
+  CustomCardWithHeart({Key key, @required this.imageNathan, @required this.imageBed, @required this.imageBath, @required this.imageCarFill});
 }
 
-class _customCardWithHeartState extends State<customCardWithHeart> {
+class _CustomCardWithHeartState extends State<CustomCardWithHeart> {
 
   final _price = "1756";
   final _buildingDescription = "Three Bedroom Apartment";
