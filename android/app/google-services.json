@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "20801037794",
+    "firebase_url": "https://rentersparadise-165af.firebaseio.com",
+    "project_id": "rentersparadise-165af",
+    "storage_bucket": "rentersparadise-165af.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:20801037794:android:43edc7c037cb17763545bb",
+        "android_client_info": {
+          "package_name": "com.tekdevisal.rentersparadise"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "20801037794-8ar5dlg7sp33rjd9a4h8ejv6p6abcr3f.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqnuLKmWYc_njQPdPl7CQNZluIpP76OiI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "20801037794-8ar5dlg7sp33rjd9a4h8ejv6p6abcr3f.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
