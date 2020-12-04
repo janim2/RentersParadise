@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
 import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
+import 'package:rentersparadise/services/auth.dart';
+
+
+Auth _auth =new Auth();
 
 class SettingsPage extends StatefulWidget {
 
@@ -10,6 +14,7 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
+
 
 
   @override
@@ -93,6 +98,8 @@ class _SettingsPageState extends State<SettingsPage> {
               ),
               GestureDetector(
                 onTap: (){
+                  //Implementing logout functionality
+                  _auth.signOut();
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (BuildContext context) => IntroScreens()));
                 },
