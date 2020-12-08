@@ -7,7 +7,6 @@ import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/It
 class HomePage extends StatefulWidget {
   final Function openDrawer;
 
-
   HomePage(this.openDrawer);
 
   @override
@@ -15,6 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+
+  static final scaffoldKey = GlobalKey<ScaffoldState>();
+  static openDrawer() {
+    scaffoldKey.currentState.openEndDrawer();
+  }
+
+
   AssetImage _imageFlorian;
   Image _imageGroup9;
 
@@ -81,7 +87,8 @@ class _HomePageState extends State<HomePage> {
                           child: SearchTextBox(labelText: "Search Properties...")),
                       InkWell(
                         onTap: (){
-                          widget.openDrawer();
+                          // widget.openDrawer();
+                          openDrawer();
                         },
                         child: Container(
                           child: _imageGroup9,
