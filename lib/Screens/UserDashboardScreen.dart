@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/Components/TheColors.dart';
 import 'package:rentersparadise/Helpers/app_properties_bloc.dart';
-
 import 'DashboardUis/FavouritesPage.dart';
 import 'DashboardUis/HomePage.dart';
 import 'DashboardUis/SearchPage.dart';
 import 'DashboardUis/SettingsPage.dart';
+import 'package:rentersparadise/Screens/Explore_Items_News_Onboarding_Screens/IntroScreens.dart';
+import 'package:rentersparadise/services/auth.dart';
+
+
+Auth _auth =new Auth();
 
 class UserDashboardScreen extends StatefulWidget {
   @override
@@ -82,18 +86,26 @@ class _UserDashboardScreenState extends State<UserDashboardScreen> {
               drawerContents("T's and C's"),
               drawerContents("Contact us"),
               drawerContents("Favorites"),
-              Expanded(child: Align(
-                alignment: Alignment.bottomCenter,
-                child: ListTile(
-                  contentPadding: EdgeInsets.only(left: 50.0),
-                  subtitle: Text("LOGOUT", style:
-                  TextStyle(
-                      color: Colors.white,
-                      fontSize: 20.0,
-                      fontFamily: 'Poppins'
-                  ),),
-                ),
-              ))
+              GestureDetector(
+                onTap: (){
+                  //Implementing logout functionality
+                  _auth.signOut();
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => IntroScreens()));
+                },
+                child: Expanded(child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: ListTile(
+                    contentPadding: EdgeInsets.only(left: 50.0),
+                    subtitle: Text("LOGOUT", style:
+                    TextStyle(
+                        color: Colors.white,
+                        fontSize: 20.0,
+                        fontFamily: 'Poppins'
+                    ),),
+                  ),
+                ),),
+              ),
             ],
           ),
         ),

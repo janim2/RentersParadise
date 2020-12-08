@@ -4,6 +4,10 @@ import 'package:rentersparadise/Components/searchTextBox.dart';
 import 'package:rentersparadise/Screens/Add_Property.dart';
 
 class HomeOwnerPage extends StatefulWidget {
+  final Function openDrawer;
+
+  HomeOwnerPage(this.openDrawer);
+
   @override
   _HomeOwnerPageState createState() => _HomeOwnerPageState();
 }
