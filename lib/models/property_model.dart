@@ -18,7 +18,7 @@ class Properties {
   DateTime dateAdded;
 
   Properties(
-      this.propertyId,
+      {this.propertyId,
       this.status,
       this.pictures,
       this.reason,
@@ -34,7 +34,7 @@ class Properties {
       this.duration,
       this.features,
       this.views,
-      this.dateAdded);
+      this.dateAdded});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{

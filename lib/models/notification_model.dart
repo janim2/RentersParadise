@@ -1,9 +1,9 @@
-/// A class representing the Notification model 
+/// A class representing the Notification model
 /// and how it is represented in the database.
-/// 
-/// It has methods that converts the data to a map 
+///
+/// It has methods that converts the data to a map
 /// and destruct it back from the map.
-class Notification {
+class NotificationModel {
   int notificationId;
   String status;
   int recepientId;
@@ -11,7 +11,15 @@ class Notification {
   String message;
   String dateAdded;
 
-    Map<String, dynamic> toMap() {
+  NotificationModel(
+      {this.notificationId,
+      this.status,
+      this.recepientId,
+      this.image,
+      this.message,
+      this.dateAdded});
+
+  Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       'notification_id': notificationId,
       'status': status,
@@ -23,7 +31,7 @@ class Notification {
     return map;
   }
 
-  Notification.fromMap(Map<String, dynamic> map) {
+  NotificationModel.fromMap(Map<String, dynamic> map) {
     notificationId = map['notification_id'];
     status = map['status'];
     recepientId = map['recepient_id'];

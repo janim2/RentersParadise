@@ -1,4 +1,4 @@
-class Users {
+class UserModel {
   int userId;
   String status;
   String userType;
@@ -12,7 +12,7 @@ class Users {
   DateTime dateRegistered;
   int viewsRemaining;
 
-  Users(
+  UserModel({
     this.userId,
     this.status,
     this.userType,
@@ -25,7 +25,7 @@ class Users {
     this.password,
     this.dateRegistered,
     this.viewsRemaining,
-  );
+  });
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
@@ -46,7 +46,7 @@ class Users {
     return map;
   }
 
-  Users.fromMap(Map<String, dynamic> map) {
+  UserModel.fromMap(Map<String, dynamic> map) {
     userId = map['userId'];
     status = map['status'];
     userType = map['userType'];

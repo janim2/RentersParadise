@@ -1,15 +1,23 @@
-/// A class representing the feedback model 
+/// A class representing the feedback model
 /// and how it is represented in the database.
-/// 
-/// It has methods that converts the data to a map 
+///
+/// It has methods that converts the data to a map
 /// and destruct it back from the map.
-class Feedback {
+class FeedbackModel {
   int feedbackId;
   String status;
   int senderId;
   String subject;
   String message;
-  String dateAdded;
+  DateTime dateAdded;
+
+  FeedbackModel(
+      {this.feedbackId,
+      this.status,
+      this.senderId,
+      this.subject,
+      this.message,
+      this.dateAdded});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
@@ -23,7 +31,7 @@ class Feedback {
     return map;
   }
 
-  Feedback.fromMap(Map<String, dynamic> map) {
+  FeedbackModel.fromMap(Map<String, dynamic> map) {
     feedbackId = map['feedback_id'];
     status = map['status'];
     senderId = map['sender_id'];
