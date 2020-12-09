@@ -7,7 +7,8 @@ class FavouritesModel {
   String postId;
   DateTime dateAdded;
 
-  FavouritesModel(this.id, this.status, this.userId, this.postId, this.dateAdded);
+  FavouritesModel(
+      {this.id, this.status, this.userId, this.postId, this.dateAdded});
 
   // converts FavouritesModel  details to a Map
   Map<String, dynamic> toMap() {

@@ -7,7 +7,7 @@ class NewsModel {
   String messageId;
   DateTime dateAdded;
 
-  NewsModel(this.id, this.status, this.title, this.messageId, this.dateAdded);
+  NewsModel({this.id, this.status, this.title, this.messageId, this.dateAdded});
 
   // converts NewsModel  details to a Map
   Map<String, dynamic> toMap() {
