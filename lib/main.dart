@@ -1,19 +1,18 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:rentersparadise/app_state/walkthrough_state.dart';
+import 'package:rentersparadise/src/core/bloc/cubit/walkthrough_cubit.dart';
+import 'package:rentersparadise/src/views/screens/onboard_screens/onboarding.dart';
 import 'package:rentersparadise/src/views/screens/onboard_screens/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider<WalkThroughState>(
-          create: (context) => WalkThroughState()),
-
-      // Put The New State Class you create
-      //  ChangeNotifierProvider<YourNewStateClass>(create: (context) =>  YourNewStateClass()),
+    MultiBlocProvider(providers: [
+      BlocProvider(
+        create: (context) => WalkthroughCubit(),
+      ),
     ], child: MyApp()),
   );
 }
@@ -37,16 +36,20 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Renters Paradise',
-      theme: ThemeData(
-        primarySwatch: colorCustom,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home:
-          // Put Your Entry Widget here
-          MySplashScreenPage(),
-//    AddPropertySuccess(),
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Renters Paradise',
+        theme: ThemeData(
+          primarySwatch: colorCustom,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: BlocBuilder<WalkthroughCubit, WalkthroughState>(
+          builder: (context, state) {
+            if (state is WalkthroughInitial) {
+              return MySplashScreenPage();
+            } else {
+              return Onboarding();
+            }
+          },
+        ));
   }
 }

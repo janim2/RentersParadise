@@ -1,8 +1,9 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
-import 'package:rentersparadise/src/views/screens/onboard_screens/onboarding.dart';
+import 'package:rentersparadise/src/core/bloc/cubit/walkthrough_cubit.dart';
 
 class IntroScreens extends StatefulWidget {
   @override
@@ -14,7 +15,6 @@ class _IntroScreensState extends State<IntroScreens> {
   Color smallTextColor = Color(0xFFA0A0A0);
   // Color activeIndicatorColor = Color(0xFFE67817);
   Color inactiveIndicatorColor = Color(0xFFC7C7C7);
-
 
   int currentIndex = 0;
 
@@ -31,8 +31,7 @@ class _IntroScreensState extends State<IntroScreens> {
         largeText: "BUY YOUR DREAM HOME",
         smallText: "Get it at an affordable price"),
     PictureAndText(
-        pictureUrl:
-            "assets/digital-marketing.jpg",
+        pictureUrl: "assets/digital-marketing.jpg",
         largeText: "COMFORT",
         smallText: "Original with 1000 product from a lot of people"),
   ];
@@ -202,7 +201,6 @@ class _IntroScreensState extends State<IntroScreens> {
                                       ),
                                     ],
                                   ),
-
                                 ],
                               ),
                             );
@@ -212,10 +210,10 @@ class _IntroScreensState extends State<IntroScreens> {
                   //Forward Button
                   ConfirmButton(
                     onPressed: () {
-                      setState(() {
-                        Navigator.of(context).push(MaterialPageRoute(
-                            builder: (BuildContext context) => Onboarding()));
-                      });
+                      final walkthrough =
+                          BlocProvider.of<WalkthroughCubit>(context);
+                      // navigate to onboarding screen
+                      walkthrough.changeWalkThrough();
                     },
                   ),
                 ],
@@ -236,21 +234,19 @@ class PictureAndText {
   PictureAndText({this.pictureUrl, this.largeText, this.smallText});
 }
 
-
 class ConfirmButton extends StatelessWidget {
-
   ConfirmButton({this.onPressed});
   final Function onPressed;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap:onPressed,
+      onTap: onPressed,
       child: Padding(
-        padding: EdgeInsets.only(left: 35,right: 35,bottom: 15),
+        padding: EdgeInsets.only(left: 35, right: 35, bottom: 15),
         // padding: const EdgeInsets.symmetric(horizontal: 50),
         child: Material(
-          color:Color(0xFFEE892F),
+          color: Color(0xFFEE892F),
           borderRadius: BorderRadius.circular(4.0),
           elevation: 5.0,
           child: Row(
@@ -259,19 +255,16 @@ class ConfirmButton extends StatelessWidget {
               // Image.asset('assets/Group147.png'),
               Padding(
                 padding: const EdgeInsets.all(5),
-                child:
-                  Icon(
-                    Icons.arrow_forward,
-                    size: 50,
-                    color: Colors.white,
-                  ),
+                child: Icon(
+                  Icons.arrow_forward,
+                  size: 50,
+                  color: Colors.white,
+                ),
                 //Image.asset('assets/Group147.png'),
-
               ),
             ],
           ),
         ),
-
       ),
     );
   }
