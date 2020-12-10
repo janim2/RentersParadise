@@ -1,13 +1,8 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:rentersparadise/src/constants/general_constants.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
 import 'package:rentersparadise/src/views/screens/add_property/second_screen.dart';
-
-const inActiveCardColor = Color(0xFFEDEDED);
-const inActiveCardTextColor = Color(0xFFC1C1C1);
-
-const kMaximumSliderValue = 10000000.0;
-const kMinimumSliderValue = 0.0;
 
 class AddProperty extends StatefulWidget {
   @override
