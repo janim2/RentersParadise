@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
 import 'package:rentersparadise/src/core/bloc/cubit/walkthrough_cubit.dart';
+import 'package:rentersparadise/src/views/screens/onboard_screens/onboarding.dart';
 
 class IntroScreens extends StatefulWidget {
   @override
@@ -214,6 +215,8 @@ class _IntroScreensState extends State<IntroScreens> {
                           BlocProvider.of<WalkthroughCubit>(context);
                       // navigate to onboarding screen
                       walkthrough.changeWalkThrough();
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (_) => Onboarding()));
                     },
                   ),
                 ],

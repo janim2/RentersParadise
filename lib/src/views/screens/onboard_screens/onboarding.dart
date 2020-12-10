@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
+import 'package:rentersparadise/src/views/screens/account/property_owner_signin.dart';
+import 'package:rentersparadise/src/views/screens/account/user_signin.dart';
 
 class Onboarding extends StatefulWidget {
   @override
@@ -18,7 +20,7 @@ class _OnboardingState extends State<Onboarding> {
       decoration: BoxDecoration(
         image: DecorationImage(
           image: AssetImage("assets/background_image_02.png"),
-          /*  colorFilter: ColorFilter.mode(
+          /*  colorFilter: ColorFilter.mode( 
               Colors.transparent.withOpacity(0.2), BlendMode.dstATop), */
           fit: BoxFit.cover,
         ),
@@ -28,7 +30,7 @@ class _OnboardingState extends State<Onboarding> {
           SizedBox(
             height: 80.0,
           ),
-          Image.asset("assets/logo.png"),
+          Image.asset("assets/RENDERS-PARADISE-LOGO-1.png"),
           SizedBox(
             height: screenHeight / 7,
           ),
@@ -45,7 +47,10 @@ class _OnboardingState extends State<Onboarding> {
           ),
           RaisedButton(
             color: TheColors.orange,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => UserSignIn()));
+            },
             child: SizedBox(
               width: 250,
               height: 85,
@@ -65,7 +70,10 @@ class _OnboardingState extends State<Onboarding> {
           SizedBox(height: 50),
           RaisedButton(
             color: TheColors.orange,
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => PropertyOwnerSignIn()));
+            },
             child: SizedBox(
               width: 250,
               height: 85,
