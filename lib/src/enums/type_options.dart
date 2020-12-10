@@ -1,0 +1,4 @@
+enum TypeOptions {
+  RENT,
+  SALES,
+}
