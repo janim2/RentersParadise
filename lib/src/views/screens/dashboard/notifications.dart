@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:rentersparadise/src/constants/the_colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:rentersparadise/src/core/bloc/cubit/notification_cubit.dart';
+import 'package:rentersparadise/src/core/models/notification_model.dart';
 
 class Notifications extends StatefulWidget {
   @override
@@ -7,182 +9,62 @@ class Notifications extends StatefulWidget {
 }
 
 class _NotificationsState extends State<Notifications> {
-  List<Map<dynamic, String>> notificationsData = [
-    {
-      "id": "1",
-      "status": "success",
-      "message": "Property Listing was successful"
-    },
-    {
-      "id": "2",
-      "status": "not_success",
-      "message": "Property Listing was was not successful"
-    },
-    {
-      "id": "3",
-      "status": "cancel",
-      "message": "Property Listing was cancelled"
-    },
-    {
-      "id": "4",
-      "status": "success",
-      "message": "Property Listing was successful"
-    },
-    {
-      "id": "5",
-      "status": "not_success",
-      "message": "Property Listing was was not successful"
-    },
-    {
-      "id": "6",
-      "status": "cancel",
-      "message": "Property Listing was cancelled"
-    },
-    {
-      "id": "7",
-      "status": "success",
-      "message": "Property Listing was successful"
-    },
-    {
-      "id": "8",
-      "status": "not_success",
-      "message": "Property Listing was was not successful"
-    },
-    {
-      "id": "9",
-      "status": "cancel",
-      "message": "Property Listing was cancelled"
-    },
-  ];
-
   @override
   Widget build(BuildContext context) {
-    double screenWidth = MediaQuery.of(context).size.width;
-    double screenHeight = MediaQuery.of(context).size.height;
+    final notificatonCubit = context.bloc<NotificationCubit>();
+    notificatonCubit.loadNotifications();
     return Scaffold(
-      body: Container(
-        width: screenWidth,
-        height: screenHeight,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              Card(
-                margin: EdgeInsets.all(0),
-                elevation: 7,
-                child: Container(
-                  height: screenHeight / 8,
-                  width: screenWidth,
-                  color: TheColors.orange,
-                  child: Padding(
-                    padding: const EdgeInsets.all(20.0),
-                    child: Text(
-                      "NOTIFICATIONS",
-                      style: TextStyle(
-                          fontSize: 27.0,
-                          fontFamily: "Poppins",
-                          color: Colors.white),
-                    ),
-                  ),
-                ),
+      body: BlocBuilder<NotificationCubit, NotificationState>(
+        builder: (context, state) {
+        if (state is NotificationInitial) {
+          return initialNotification();
+        } else if (state is NotificationLoading) {
+          return loadingNotification();
+        } else if (state is NotificationLoaded) {
+          return doneLoadingNotification(state.notificationModel);
+        } else if (state is NotificationError) {
+          return Center(
+            child: Text("error"),
+          );
+        } else {
+          return initialNotification();
+        }
+      }),
+    );
+  }
+
+  Widget initialNotification() {
+    return Center(
+      child: Text("notifications"),
+    );
+  }
+
+  Widget loadingNotification() {
+    return Center(
+      child: CircularProgressIndicator(),
+    );
+  }
+
+  Widget doneLoadingNotification(List<NotificationModel> _notificationList) {
+    return ListView.builder(
+        itemCount: _notificationList.length,
+        itemBuilder: (context, index) {
+          return Container(
+            padding: EdgeInsets.only(left:10.0, right: 10.0),
+            child: Card(
+                  child: ListTile(
+                    leading: 
+                    _notificationList[index].status == "active"
+                    ?  Image.asset("assets/notify_success.png")
+                    : Image.asset("assets/notify_not_success,png"),
+                subtitle: Text(
+                  _notificationList[index].message,
+                style: TextStyle(
+                  fontSize: 16.0
+                ),),
               ),
-              Card(
-                margin: EdgeInsets.all(20),
-                child: ListView.builder(
-                  scrollDirection: Axis.vertical,
-                  shrinkWrap: true,
-                  itemCount: notificationsData.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    /* String key = notificationsData.keys.elementAt(index); */
-                    return Row(
-                      children: [
-                        notificationsData[index]["status"] == "success"
-                            ? Image.asset("assets/notify_success.png")
-                            : notificationsData[index]["status"] ==
-                                    "not_success"
-                                ? Image.asset(
-                                    "assets/notify_not_successful.png")
-                                : Image.asset("assets/notify_cancel.png"),
-                        SizedBox(width: 20),
-                        Flexible(
-                            child: Text(notificationsData[index]["message"],
-                                style: TextStyle(fontSize: 22))),
-                      ],
-                    );
-                  },
-                ),
-              )
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget rowNotification(String status, String message) {
-    return Row(
-      children: [
-        status == "success"
-            ? Image.asset("assets/notify_success.png")
-            : status == "not_success"
-                ? Image.asset("assets/notify_not_success,png")
-                : Image.asset("assets/notify_cancel.png"),
-        SizedBox(width: 20),
-        Text(message, style: TextStyle(fontSize: 25))
-      ],
-    );
-  }
-
-  _fetchNotifications() {
-    // TODO: fetch notifications from api
-
-    List<Map<dynamic, String>> notificationsData = [
-      {
-        "id": "1",
-        "status": "success",
-        "message": "Property Listing was successful"
-      },
-      {
-        "id": "2",
-        "status": "not_success",
-        "message": "Property Listing was was not successful"
-      },
-      {
-        "id": "3",
-        "status": "cancel",
-        "message": "Property Listing was cancelled"
-      },
-      {
-        "id": "4",
-        "status": "success",
-        "message": "Property Listing was successful"
-      },
-      {
-        "id": "5",
-        "status": "not_success",
-        "message": "Property Listing was was not successful"
-      },
-      {
-        "id": "6",
-        "status": "cancel",
-        "message": "Property Listing was cancelled"
-      },
-      {
-        "id": "7",
-        "status": "success",
-        "message": "Property Listing was successful"
-      },
-      {
-        "id": "8",
-        "status": "not_success",
-        "message": "Property Listing was was not successful"
-      },
-      {
-        "id": "9",
-        "status": "cancel",
-        "message": "Property Listing was cancelled"
-      },
-    ];
-
-    return notificationsData;
+            ),
+          );
+        });
   }
 }
