@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/src/app.dart';
+import 'package:rentersparadise/src/core/bloc/cubit/notification_cubit.dart';
 import 'package:rentersparadise/src/core/bloc/cubit/walkthrough_cubit.dart';
 
 void main() async {
@@ -12,6 +13,9 @@ void main() async {
       BlocProvider(
         create: (context) => WalkthroughCubit(),
       ),
+      BlocProvider(
+        create: (context) => NotificationCubit()
+        )
     ], child: MyApp()),
   );
 }
