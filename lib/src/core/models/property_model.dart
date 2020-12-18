@@ -1,26 +1,27 @@
 class Properties {
   int propertyId;
   String status;
-  dynamic pictures;
+  dynamic picture;
   dynamic reason;
   String propertyType;
   String details;
   String location;
   String streetName;
-  int bedroom;
-  int bathroom;
-  int parking;
-  double price;
-  int uploaderId;
+  String bedroom;
+  String bathroom;
+  String parking;
+  String price;
+  String uploaderId;
   String duration;
   String features;
   int views;
-  DateTime dateAdded;
+  String dateAdded;
+  String name;
 
   Properties(
       {this.propertyId,
       this.status,
-      this.pictures,
+      this.picture,
       this.reason,
       this.propertyType,
       this.details,
@@ -34,18 +35,19 @@ class Properties {
       this.duration,
       this.features,
       this.views,
-      this.dateAdded});
+      this.dateAdded,
+      this.name});
 
   Map<String, dynamic> toMap() {
     var map = <String, dynamic>{
       'propertyId': propertyId,
       'status': status,
-      'pictures': pictures,
+      'picture': picture,
       'reason': reason,
-      'propertyType': propertyType,
+      'property_type': propertyType,
       'details': details,
       'location': location,
-      'streetName': streetName,
+      'streetname': streetName,
       'bedroom': bedroom,
       'bathroom': bathroom,
       'parking': parking,
@@ -55,28 +57,30 @@ class Properties {
       'features': features,
       'views': views,
       'dateAdded': dateAdded,
+      'name': name
     };
 
     return map;
   }
 
   Properties.fromMap(Map<String, dynamic> map) {
-    propertyId = map['propertyId'];
+    propertyId = map['property_id'];
     status = map['status'];
-    pictures = map['pictures'];
+    picture = map['picture'];
     reason = map['reason'];
-    propertyType = map['propertyType'];
+    propertyType = map['property_type'];
     details = map['details'];
     location = map['location'];
-    streetName = map['streetName'];
+    streetName = map['streetname'];
     bedroom = map['bedroom'];
     bathroom = map['bathroom'];
     parking = map['parking'];
-    price = map['price'];
-    uploaderId = map['uploaderId'];
+    price = map['prize'];
+    uploaderId = map['uploader_id'];
     duration = map['duration'];
     features = map['features'];
     views = map['views'];
-    dateAdded = map['dateAdded'];
+    dateAdded = map['date_added'];
+    name = map['name'];
   }
 }
