@@ -13,8 +13,7 @@ class _NotificationsState extends State<Notifications> {
   Widget build(BuildContext context) {
     final notificatonCubit = context.bloc<NotificationCubit>();
     notificatonCubit.loadNotifications();
-    return Scaffold(
-      body: BlocBuilder<NotificationCubit, NotificationState>(
+    return BlocBuilder<NotificationCubit, NotificationState>(
         builder: (context, state) {
         if (state is NotificationInitial) {
           return initialNotification();
@@ -29,8 +28,7 @@ class _NotificationsState extends State<Notifications> {
         } else {
           return initialNotification();
         }
-      }),
-    );
+      });
   }
 
   Widget initialNotification() {
