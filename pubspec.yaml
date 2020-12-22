@@ -34,7 +34,8 @@ dependencies:
   dotted_border: ^1.0.6
   bloc: ^6.0.1
   flutter_bloc: ^6.1.0
-
+  multi_image_picker: ^4.7.14
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter
