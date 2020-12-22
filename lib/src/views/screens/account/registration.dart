@@ -18,15 +18,34 @@ class _RegistrationState extends State<Registration> {
   bool showSpinner = false;
   bool _proceedWithRegistration = false;
 
-  String email;
-  String password;
-  String confirmPassword;
+  // String email;
+  // String password;
+  // String confirmPassword;
+  String firstName;
+  String lastName;
+  String phoneNumber;
+  String residentialAddress;
+
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final residentialAddressController = TextEditingController();
+  final emailAddressController = TextEditingController();
+  final passwordController = TextEditingController();
+  final confirmPasswordController = TextEditingController();
 
   Future registerUser(
-      {String email, String password, String confirmPassword}) async {
+      {String email,
+      String password,
+      String confirmPassword,
+      String firstName,
+      String lastName,
+      String phoneNumber,
+      String residentialAddress}) async {
     try {
       if (password == confirmPassword) {
-        var newUser = await _auth.registration(email, password);
+        var newUser = await _auth.registration(email, password, firstName,
+            lastName, phoneNumber, residentialAddress);
         if (newUser != null) {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => UserDashboardScreen()));
@@ -153,6 +172,7 @@ class _RegistrationState extends State<Registration> {
                     children: [
                       CustomBoxShadow(
                         child: TextFormField(
+                          controller: firstNameController,
                           decoration: InputDecoration(
                             hintText: "First Name",
                             border: InputBorder.none,
@@ -166,6 +186,7 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 20),
                       CustomBoxShadow(
                         child: TextFormField(
+                          controller: lastNameController,
                           decoration: InputDecoration(
                             hintText: "Last Name",
                             border: InputBorder.none,
@@ -179,6 +200,7 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 20),
                       CustomBoxShadow(
                         child: TextFormField(
+                          controller: phoneNumberController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             hintText: "Phone Number",
@@ -193,6 +215,7 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 20),
                       CustomBoxShadow(
                         child: TextFormField(
+                          controller: residentialAddressController,
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             hintText: "Residential Address",
@@ -210,6 +233,12 @@ class _RegistrationState extends State<Registration> {
                           setState(() {
                             _proceedWithRegistration = true;
                           });
+
+                          firstName = firstNameController.text;
+                          lastName = lastNameController.text;
+                          phoneNumber = phoneNumberController.text;
+                          residentialAddress =
+                              residentialAddressController.text;
                         },
                         child: SizedBox(
                           width: screenWidth - 70,
@@ -246,9 +275,7 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 30),
                       CustomBoxShadow(
                         child: TextFormField(
-                          onChanged: (value) {
-                            email = value;
-                          },
+                          controller: emailAddressController,
                           decoration: InputDecoration(
                             hintText: "Email Address",
                             border: InputBorder.none,
@@ -264,9 +291,7 @@ class _RegistrationState extends State<Registration> {
                       CustomBoxShadow(
                         child: TextFormField(
                           obscureText: true,
-                          onChanged: (value) {
-                            password = value;
-                          },
+                          controller: passwordController,
                           decoration: InputDecoration(
                             hintText: "Password",
                             border: InputBorder.none,
@@ -281,9 +306,7 @@ class _RegistrationState extends State<Registration> {
                       CustomBoxShadow(
                         child: TextFormField(
                           obscureText: true,
-                          onChanged: (value) {
-                            confirmPassword = value;
-                          },
+                          controller: confirmPasswordController,
                           decoration: InputDecoration(
                             hintText: "Confirm Password",
                             border: InputBorder.none,
@@ -303,9 +326,14 @@ class _RegistrationState extends State<Registration> {
                           });
 
                           registerUser(
-                              email: email,
-                              password: password,
-                              confirmPassword: confirmPassword);
+                            email: emailAddressController.text,
+                            password: passwordController.text,
+                            confirmPassword: confirmPasswordController.text,
+                            firstName: firstName,
+                            lastName: lastName,
+                            phoneNumber: phoneNumber,
+                            residentialAddress: residentialAddress,
+                          );
                         },
                         child: SizedBox(
                           width: screenWidth - 70,
