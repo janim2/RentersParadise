@@ -1,8 +1,11 @@
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:multi_image_picker/multi_image_picker.dart';
 import 'package:rentersparadise/src/constants/general_constants.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
 import 'package:rentersparadise/src/core/bloc/app_properties_bloc.dart';
+import 'package:rentersparadise/src/core/bloc/cubit/select_property_images_cubit.dart';
 import 'package:rentersparadise/src/views/screens/add_property/second_screen.dart';
 
 class AddPage extends StatefulWidget {
@@ -13,18 +16,28 @@ class AddPage extends StatefulWidget {
 class _AddPageState extends State<AddPage> {
   int price = 1000000;
 
+  List<Asset> _selectedImages = [];
+
+  Widget imageGridView(List<Asset> _images) {
+    return GridView.count(
+      crossAxisSpacing: 5.0,
+      crossAxisCount: 3,
+      children: List.generate(_images.length, (index) {
+        Asset asset = _images[index];
+        return AssetThumb(
+          asset: asset,
+          width: 250,
+          height: 250,
+        );
+      }),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
+    final sipc = context.bloc<SelectPropertyImagesCubit>();
+    sipc.loadImagesFromDevice();
     return Scaffold(
-//        appBar: AppBar(
-//          title: Text("ADD PROPERTY",
-//            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 27, color: Colors.white, fontFamily: "Poppins"),),
-//          leading: GestureDetector(
-//              onTap: (){
-//                Navigator.of(context).pop();
-//              },child: Icon(Icons.arrow_back,color: Colors.white,size: 40,)),
-//          backgroundColor: TheColors.orange,
-//        ),
         body: Container(
             color: Colors.white,
             height: double.maxFinite,
@@ -93,17 +106,71 @@ class _AddPageState extends State<AddPage> {
                         SizedBox(
                           height: 15,
                         ),
-                        DottedBorder(
-                          color: TheColors.orange,
-                          strokeWidth: 1,
-                          child: Padding(
-                            padding:
-                                const EdgeInsets.fromLTRB(110.0, 60, 110, 80),
-                            child: Text(
-                              "ADD PHOTO",
-                              style: TextStyle(
-                                  fontSize: 20, color: TheColors.orange),
-                            ),
+                        Container(
+                          height: 300,
+                          width: MediaQuery.of(context).size.width * 0.95,
+                          padding: EdgeInsets.fromLTRB(10.0, 0, 10.0, 0),
+                          child: Expanded(
+                            child: DottedBorder(
+                                color: TheColors.orange,
+                                strokeWidth: 1,
+                                child: BlocBuilder<SelectPropertyImagesCubit,
+                                        SelectPropertyImagesState>(
+                                    builder: (context, state) {
+                                  if (state is SelectPropertyImagesInitial) {
+                                    return Center(
+                                      child: GestureDetector(
+                                          child: Text(
+                                            "ADD PHOTO",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: TheColors.orange),
+                                          ),
+                                          onTap: () {}),
+                                    );
+                                  } else if (state
+                                      is SelectPropertyImagesLoading) {
+                                    return Center(
+                                      child: CircularProgressIndicator(),
+                                    );
+                                  } else if (state
+                                      is SelectPropertyImagesLoaded) {
+                                    if (state.images.length <= 0) {
+                                      return Center(
+                                        child: GestureDetector(
+                                          child: Text(
+                                            "ADD PHOTO",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: TheColors.orange),
+                                          ),
+                                          onTap: sipc.loadImages,
+                                        ),
+                                      );
+                                    } else {
+                                      setState(() {
+                                        _selectedImages = state.images;
+                                      });
+                                      return imageGridView(state.images);
+                                    }
+                                  } else if (state
+                                      is SelectPropertyImagesError) {
+                                    return Center(
+                                      child: Text("${state.error}"),
+                                    );
+                                  } else {
+                                    return Center(
+                                      child: GestureDetector(
+                                          child: Text(
+                                            "ADD PHOTO",
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: TheColors.orange),
+                                          ),
+                                          onTap: () {}),
+                                    );
+                                  }
+                                })),
                           ),
                         ),
                       ],
@@ -120,7 +187,6 @@ class _AddPageState extends State<AddPage> {
                                 AddPropertyScreen2()));
                       },
                       child: Container(
-//          margin: EdgeInsets.all(15),
                         width: MediaQuery.of(context).size.width,
                         child: Material(
                           elevation: 5.0,
@@ -140,7 +206,6 @@ class _AddPageState extends State<AddPage> {
                                       fontSize: 30),
                                 ),
                               ),
-//                Icon(Icons.arrow_forward,color: Colors.white,size: 40,)
                             ],
                           ),
                         ),
