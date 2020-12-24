@@ -2,11 +2,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rentersparadise/src/constants/general_constants.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
+import 'package:rentersparadise/src/core/models/property_model.dart';
+import 'package:rentersparadise/src/core/services/post_property.dart';
 import 'package:rentersparadise/src/views/components/bottom_appbar_button.dart';
 import 'package:rentersparadise/src/views/components/subtitle.dart';
 import 'package:rentersparadise/src/views/screens/add_property/success.dart';
 
 class AddPropertyScreen3 extends StatefulWidget {
+  final List<String> imageUrls;
+  final String type;
+  final String propertyType;
+  final String propertyDetails;
+
+  const AddPropertyScreen3(
+      {Key key,
+      @required this.imageUrls,
+      @required this.type,
+      @required this.propertyType,
+      @required this.propertyDetails})
+      : super(key: key);
+
   @override
   _AddPropertyScreen3State createState() => _AddPropertyScreen3State();
 }
@@ -39,6 +54,7 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
   String _selectedBedRoomQuantity;
   String _selectedStreetName;
   String _selectedLocation;
+  String _price;
 
   @override
   Widget build(BuildContext context) {
@@ -72,8 +88,86 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
         child: BottomAppBarButton(
           buttonText: 'Post Property',
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => AddPropertySuccess()));
+            if (this._selectedBathRoomQuantity != "" &&
+                this._selectedParkingQuantity != "" &&
+                this._selectedBedRoomQuantity != "" &&
+                this._selectedStreetName != "" &&
+                this._selectedLocation != "" &&
+                this._price != "") {
+              /// once all fields are provided, the data is push to the database
+              /// and on successful storage navigation is done to the success page.
+
+              var userId = PostProperty.userId;
+              DateTime now = DateTime.now();
+              DateTime date = DateTime(now.year, now.month, now.day);
+              // Properties property = Properties(
+              //     status: "active",
+              //     picture: widget.imageUrls,
+              //     reason: widget.type,
+              //     propertyType: widget.propertyType,
+              //     details: widget.propertyDetails,
+              //     location: this._selectedLocation,
+              //     streetName: this._selectedStreetName,
+              //     bedroom: this._selectedBedRoomQuantity,
+              //     bathroom: this._selectedBathRoomQuantity,
+              //     parking: this._selectedParkingQuantity,
+              //     price: this._price,
+              //     uploaderId: userId,
+              //     duration: "month",
+              //     features: "none",
+              //     views: 0,
+              //     dateAdded: date.toString(),
+              //     name: this._selectedBedRoomQuantity +
+              //         " " +
+              //         widget.propertyType);
+              print("price is" + this._price);
+              var _propertyId = PostProperty.postProperty({
+                'status': "active",
+                'picture': widget.imageUrls.join(','),
+                'reason': widget.type.toString(),
+                'property_type': widget.propertyType.toString(),
+                'details': widget.propertyDetails.toString(),
+                'location': this._selectedLocation.toString(),
+                'streetname': this._selectedStreetName.toString(),
+                'bedroom': this._selectedBedRoomQuantity.toString(),
+                'bathroom': this._selectedBathRoomQuantity.toString(),
+                'parking': this._selectedParkingQuantity.toString(),
+                'prize': this._price.toString(),
+                'uploader_id': userId.toString(),
+                'duration': "month",
+                'features': "none",
+                'views': 0,
+                'date_added': date.toString(),
+                'name':
+                    this._selectedBedRoomQuantity + " " + widget.propertyType.toString()
+              });
+              if (_propertyId == null) {
+                // Future.delayed(Duration(milliseconds: 1000), () {
+                //   return showDialog(
+                //     context: context,
+                //     builder: (context) {
+                //       return AlertDialog(
+                //         content: Text("Failed to add property"),
+                //       );
+                //     },
+                //   );
+                // });
+                CircularProgressIndicator();
+              } else {
+                Navigator.of(context).push(MaterialPageRoute(
+                    builder: (BuildContext context) => AddPropertySuccess()));
+              }
+            } else {
+              return showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    content: Text(
+                        "Please make sure the right information is provided."),
+                  );
+                },
+              );
+            }
           },
         ),
       ),
@@ -243,13 +337,6 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
                             isDense: true,
                             isExpanded: false,
                             iconEnabledColor: Color(0xFF322276),
-                            // hint: Padding(
-                            //   padding: const EdgeInsets.only(left: 10),
-                            //   child: Text(
-                            //     ' No.',
-                            //     style: kDropDownMenuItemsTextStyle,
-                            //   ),
-                            // ),
                             value: _selectedBedRoomQuantity,
                             onChanged: (newValue) {
                               setState(() {
@@ -299,13 +386,6 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
                             isDense: true,
                             isExpanded: false,
                             iconEnabledColor: Color(0xFF322276),
-                            // hint: Padding(
-                            //   padding: const EdgeInsets.only(left: 10),
-                            //   child: Text(
-                            //     ' No.',
-                            //     style: kDropDownMenuItemsTextStyle,
-                            //   ),
-                            // ),
                             value: _selectedBathRoomQuantity,
                             onChanged: (value) {
                               setState(() {
@@ -355,13 +435,6 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
                             isDense: true,
                             isExpanded: false,
                             iconEnabledColor: Color(0xFF322276),
-                            // hint: Padding(
-                            //   padding: const EdgeInsets.only(left: 10),
-                            //   child: Text(
-                            //     ' No.',
-                            //     style: kDropDownMenuItemsTextStyle,
-                            //   ),
-                            // ),
                             value: _selectedParkingQuantity,
                             onChanged: (newValue) {
                               setState(() {
@@ -391,58 +464,52 @@ class _AddPropertyScreen3State extends State<AddPropertyScreen3> {
 
             //Price
             SubTitle(title: 'Price'),
-            PriceInputField(),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PriceInputField extends StatelessWidget {
-  const PriceInputField({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // width: 40,
-      child: Padding(
-        padding:
-            const EdgeInsets.only(left: 15, right: 200, top: 10, bottom: 18),
-        child: Material(
-          elevation: 20,
-          borderRadius: BorderRadius.circular(5),
-          child: Center(
-            child: TextField(
-              cursorColor: TheColors.orange,
-              decoration: InputDecoration(
-                hintText: " Enter Price",
-                hintStyle: kDropDownMenuItemsTextStyle,
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: Colors.white,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: Colors.white,
+            Container(
+              // width: 40,
+              child: Padding(
+                padding: const EdgeInsets.only(
+                    left: 15, right: 200, top: 10, bottom: 18),
+                child: Material(
+                  elevation: 20,
+                  borderRadius: BorderRadius.circular(5),
+                  child: Center(
+                    child: TextFormField(
+                      onChanged: (price) {
+                        _price = price;
+                      },
+                      cursorColor: TheColors.orange,
+                      decoration: InputDecoration(
+                        hintText: " Enter Price",
+                        hintStyle: kDropDownMenuItemsTextStyle,
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: Colors.white,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                      keyboardType: TextInputType.number,
+                      inputFormatters: [
+                        WhitelistingTextInputFormatter.digitsOnly
+                      ],
+                    ),
                   ),
                 ),
               ),
-              keyboardType: TextInputType.number,
-              inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
-            ),
-          ),
+            )
+          ],
         ),
       ),
     );
