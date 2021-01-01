@@ -27,7 +27,9 @@ class FetchNotification {
         .then((QuerySnapshot querySnapshot) => {
               querySnapshot.docs.forEach((doc) {
                 var results = doc.data();
-                _values.add(results);
+                if (userId == results["user_id"]) {
+                  _values.add(results);
+                }
               })
             });
     for (Map<String, dynamic> map in _values) {
