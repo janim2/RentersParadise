@@ -1,5 +1,5 @@
 class UserModel {
-  int userId;
+  String userId;
   String status;
   String userType;
   dynamic profilePicture;

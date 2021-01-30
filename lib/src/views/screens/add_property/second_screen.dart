@@ -15,6 +15,10 @@ class ListItem {
 }
 
 class AddPropertyScreen2 extends StatefulWidget {
+    /// adding list of image urls that would be passed
+  /// from the add_page screen
+  final List<String> imageUrls;
+  AddPropertyScreen2({Key key, @required this.imageUrls});
   @override
   _AddPropertyScreen2State createState() => _AddPropertyScreen2State();
 }
@@ -23,6 +27,10 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
   int price = 5000000;
   Cards selectedCard;
   int selectedRadio;
+
+  String type = "";
+  String propertyType = "";
+  String propertyDetails = "";
 
   // Changes the selected value on 'onChanged' click on each radio button
   setSelectedRadio(int val) {
@@ -70,8 +78,25 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
         child: BottomAppBarButton(
           buttonText: 'Continue',
           onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => AddPropertyScreen3()));
+            if (this.type != "" &&
+                this.propertyDetails != "" &&
+                this.propertyType != "") {
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (BuildContext context) => AddPropertyScreen3(
+                    imageUrls: widget.imageUrls,
+                    propertyDetails: propertyDetails,
+                    propertyType: propertyType,
+                    type: type,
+                  )));
+            } else {
+              return showDialog(
+                  context: context,
+                  builder: (context) {
+                    return AlertDialog(
+                      content: Text("Provide the necessary information"),
+                    );
+                  });
+            }
           },
         ),
       ),
@@ -132,6 +157,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                   onChanged: (val) {
                     //print("Radio $val");
                     setSelectedRadio(val);
+                    type = "For Rent";
                   },
                 ),
                 Text(
@@ -145,6 +171,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                   onChanged: (val) {
                     //print("Radio $val");
                     setSelectedRadio(val);
+                    type = "For Sale";
                   },
                 ),
                 Text(
@@ -168,6 +195,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                     //Change the Background Color of the Card and Text in Card
                     setState(() {
                       selectedCard = Cards.HOUSES;
+                      propertyType = "Houses";
                     });
                   },
                   cardTextColor: selectedCard == Cards.HOUSES
@@ -183,6 +211,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                     //Change the Background Color of the Card and Text in Card
                     setState(() {
                       selectedCard = Cards.APARTMENTS;
+                      propertyType = "Apartments";
                     });
                   },
                   cardTextColor: selectedCard == Cards.APARTMENTS
@@ -198,6 +227,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                     //Change the Background Color of the Card and Text in Card
                     setState(() {
                       selectedCard = Cards.DUPLEX;
+                      propertyType = "Duplex";
                     });
                   },
                   cardTextColor: selectedCard == Cards.DUPLEX
@@ -213,6 +243,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                     //Change the Background Color of the Card and Text in Card
                     setState(() {
                       selectedCard = Cards.SEMI_DETACHED;
+                      propertyType = "Semi Detached";
                     });
                   },
                   cardTextColor: selectedCard == Cards.SEMI_DETACHED
@@ -228,6 +259,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                     //Change the Background Color of the Card and Text in Card
                     setState(() {
                       selectedCard = Cards.VILLAS;
+                      propertyType = "Villas";
                     });
                   },
                   cardTextColor: selectedCard == Cards.VILLAS
@@ -243,6 +275,7 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
                     //Change the Background Color of the Card and Text in Card
                     setState(() {
                       selectedCard = Cards.STOREY;
+                      propertyType = "Storey";
                     });
                   },
                   cardTextColor: selectedCard == Cards.STOREY
@@ -257,56 +290,49 @@ class _AddPropertyScreen2State extends State<AddPropertyScreen2> {
 
             //Property Details
             SubTitle(title: 'Property Details'),
-            PropertyDetailsInputField(),
-            SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class PropertyDetailsInputField extends StatelessWidget {
-  const PropertyDetailsInputField({
-    Key key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      //width: 40,
-      child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
-        child: Material(
-          elevation: 20,
-          borderRadius: BorderRadius.circular(5),
-          child: Center(
-            child: TextField(
-              keyboardType: TextInputType.multiline,
-              maxLines: 4,
-              cursorColor: TheColors.orange,
-              decoration: InputDecoration(
-                enabledBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: TheColors.orange,
-                  ),
-                ),
-                focusedBorder: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(
-                    Radius.circular(5),
-                  ),
-                  borderSide: BorderSide(
-                    width: 2,
-                    color: TheColors.orange,
+            // PropertyDetailsInputField(),
+            Container(
+              //width: 40,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+                child: Material(
+                  elevation: 20,
+                  borderRadius: BorderRadius.circular(5),
+                  child: Center(
+                    child: TextField(
+                      onChanged: (val) {
+                        this.propertyDetails = val;
+                      },
+                      keyboardType: TextInputType.multiline,
+                      maxLines: 4,
+                      cursorColor: TheColors.orange,
+                      decoration: InputDecoration(
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: TheColors.orange,
+                          ),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                          borderSide: BorderSide(
+                            width: 2,
+                            color: TheColors.orange,
+                          ),
+                        ),
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-          ),
+            SizedBox(height: MediaQuery.of(context).viewInsets.bottom),
+          ],
         ),
       ),
     );
