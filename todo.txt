@@ -1,0 +1,28 @@
+
+---
+Nobert's UI
+---
+    - Add Property
+    - Fetch User Details
+    - Edit User Details
+    - Toggle Push Notifications
+    - Fetch Favorite Properties
+
+---
+Kloy's UI
+---
+    - Fetch Notifications
+
+---
+Kyeremeh's UI
+---
+    - Search Properties
+    - Fetch Property Details
+    - Fetch News
+
+---
+Obah's UI
+---
+    - Fetch Properties
+    - Edit Properties Details
+    
