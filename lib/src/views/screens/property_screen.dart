@@ -1,4 +1,5 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
@@ -7,15 +8,19 @@ import 'package:rentersparadise/src/views/components/bottom_appbar_button.dart';
 const kTextStyle =
     TextStyle(color: Colors.white, fontWeight: FontWeight.w400, fontSize: 20);
 
-const sampleText = ("Futures, stocks, and spot currency trading have large potential rewards, but also large potential"
-    " risk. You must be aware of the risks and be willing to accept them in order to trade in the futures, stocks,"
-    " and forex markets. Never trade with money you can’t afford to lose. This publication is neither a solicitation nor an "
-    "offer to Buy/Sell futures, stocks or forex. The information is for educational purposes only. No "
-    "representation is being made that any account will or is likely to achieve profits or losses similar to those "
-    "discussed in this publication. Past performance of indicators or methodology are not necessarily indicative "
-    "of future results.");
+// const sampleText = ("Futures, stocks, and spot currency trading have large potential rewards, but also large potential"
+//     " risk. You must be aware of the risks and be willing to accept them in order to trade in the futures, stocks,"
+//     " and forex markets. Never trade with money you can’t afford to lose. This publication is neither a solicitation nor an "
+//     "offer to Buy/Sell futures, stocks or forex. The information is for educational purposes only. No "
+//     "representation is being made that any account will or is likely to achieve profits or losses similar to those "
+//     "discussed in this publication. Past performance of indicators or methodology are not necessarily indicative "
+//     "of future results.");
 
 class PropertyScreen extends StatefulWidget {
+  final String docId;
+
+  const PropertyScreen({Key key, this.docId}) : super(key: key);
+  
   @override
   _PropertyScreenState createState() => _PropertyScreenState();
 }
@@ -27,8 +32,38 @@ class _PropertyScreenState extends State<PropertyScreen> {
   final Color selectedIconColor = Color(0xFFEE892F);
   bool _hasBeenPressed = false;
 
+  // List properties = [];
+
+  fetchData(){
+    print("${widget.docId}");
+  DocumentReference documentReference = FirebaseFirestore.instance.collection("favourites").doc("${widget.docId}");
+  documentReference.snapshots().listen((event){
+
+    if(event.data() != null){
+    setState(() {
+      Map data = {};
+      print(data);
+      data = event.data();
+      _hasBeenPressed = data["status"] == "active"?true:false;
+    });
+    }else{
+      print("No data");
+    }
+   });
+  }
+
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    fetchData();
+    super.initState();
+  }
+
+
   @override
   Widget build(BuildContext context) {
+    print("Document id: ${widget.docId}");
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
         color: Colors.white24,
@@ -40,12 +75,33 @@ class _PropertyScreenState extends State<PropertyScreen> {
       ),
       body: Stack(
         children: <Widget>[
-          ListView(
+
+ StreamBuilder(
+    stream: FirebaseFirestore.instance.collection("properties").doc("${widget.docId}").snapshots(),
+    builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return Center(
+          child:CircularProgressIndicator(),
+        );
+      } else { 
+        
+         // properties = snapshot.data;
+         
+  // print(snapshot.data["prize"]);
+        return ListView(
             children: <Widget>[
               Stack(
                 children: <Widget>[
                   //Background Image with Text Overlay
-                  BackgroundImageWithTextOverlay(price: price),
+                  BackgroundImageWithTextOverlay(
+                    price: snapshot.data["prize"],
+                    address: "${snapshot.data["location"]}, ${snapshot.data["streetname"]}",
+                    bath: snapshot.data["bathroom"],
+                    bed: snapshot.data["bedroom"],
+                    name: snapshot.data["name"],
+                    parking: snapshot.data["parking"],
+
+                    ),
 
                   //The Scroll  View and the Features and Description Section
                   Column(
@@ -93,14 +149,14 @@ class _PropertyScreenState extends State<PropertyScreen> {
                         children: <Widget>[
                           FeatureAndQuantity(
                             featureName: "Bedroooms",
-                            quantity: "4",
+                            quantity: "${snapshot.data["bedroom"]}",
                           ),
                           SizedBox(height: 10),
                           FeatureAndQuantity(
-                              featureName: "Bathrooms", quantity: "3"),
+                              featureName: "Bathrooms", quantity: "${snapshot.data["bathroom"]}"),
                           SizedBox(height: 10),
                           FeatureAndQuantity(
-                              featureName: "Parking", quantity: "2"),
+                              featureName: "Parking", quantity: "${snapshot.data["parking"]}"),
                           SizedBox(height: 10),
                           Container(
                             alignment: Alignment.topLeft,
@@ -118,7 +174,8 @@ class _PropertyScreenState extends State<PropertyScreen> {
                           Padding(
                             padding: const EdgeInsets.only(left: 18, right: 18),
                             child: Text(
-                              sampleText,
+                              //sampleText,
+                              "${snapshot.data["details"]}",
                               style: TextStyle(
                                 color: Colors.grey,
                                 fontSize: 20,
@@ -147,10 +204,11 @@ class _PropertyScreenState extends State<PropertyScreen> {
                           color: _hasBeenPressed
                               ? selectedIconColor
                               : defaultIconColor,
-                          onPressed: () => {
+                          onPressed: (){
+                            //addData();
                             setState(() {
                               _hasBeenPressed = !_hasBeenPressed;
-                            })
+                            });
                           },
                         ),
                       ),
@@ -159,8 +217,9 @@ class _PropertyScreenState extends State<PropertyScreen> {
                 ],
               ),
             ],
-          ),
+          );
 
+ }}),
           //The Back Arrow of the Page
           Positioned(
             child: Padding(
@@ -180,6 +239,22 @@ class _PropertyScreenState extends State<PropertyScreen> {
       ),
     );
   }
+
+
+
+  addData(){
+    Map dataToAdd = {
+      "name":"Aberor",
+      "Age":22,
+      "Description":"Wonderful personality",
+      "isHandsome":true,
+    };
+
+    CollectionReference collectionReference = FirebaseFirestore.instance.collection("collectionPath");
+    collectionReference.add(dataToAdd);
+  }
+
+
 }
 
 class FeatureAndQuantity extends StatelessWidget {
@@ -249,10 +324,15 @@ class ImageWidget extends StatelessWidget {
 class BackgroundImageWithTextOverlay extends StatelessWidget {
   const BackgroundImageWithTextOverlay({
     Key key,
-    @required this.price,
+    @required this.price, this.name, this.bed, this.parking, this.address, this.bath,
   }) : super(key: key);
 
-  final double price;
+  final price;
+  final name;
+  final bed;
+  final bath;
+  final parking;
+  final address;
 
   @override
   Widget build(BuildContext context) {
@@ -278,7 +358,7 @@ class BackgroundImageWithTextOverlay extends StatelessWidget {
             color: Colors.black26,
             padding: EdgeInsets.only(left: 20, top: 20),
             child: Text(
-              'One Bedroom Apartment',
+              '$name',
               style: kTextStyle,
             ),
           ),
@@ -287,7 +367,7 @@ class BackgroundImageWithTextOverlay extends StatelessWidget {
             color: Colors.black26,
             padding: EdgeInsets.only(left: 20, top: 5),
             child: Text(
-              '1 Leodel Street, Kasoa',
+              '$address',
               style: TextStyle(
                 color: Colors.white,
               ),
@@ -300,18 +380,18 @@ class BackgroundImageWithTextOverlay extends StatelessWidget {
               children: <Widget>[
                 ImageAndText(
                   pictureUrl: "assets/bed-24.png",
-                  text: ' 1 Bed',
+                  text: ' $bed Bed',
                 ),
                 SizedBox(width: 10),
                 ImageAndText(
                   pictureUrl: "assets/bath-24.png",
-                  text: ' 1 Bath',
+                  text: ' $bath Bath',
                 ),
                 SizedBox(width: 10),
                 ImageAndText(
                   //I can't find this specific image in the UI Distribution archive
                   pictureUrl: "assets/bath-24.png",
-                  text: ' 2 Parking',
+                  text: ' $parking Parking',
                 ),
                 SizedBox(width: 10),
               ],

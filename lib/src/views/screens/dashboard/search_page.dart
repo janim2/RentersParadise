@@ -10,7 +10,7 @@ class SearchPage extends StatefulWidget {
 
 class _SearchPageState extends State<SearchPage> {
   // declaring image types to be rendered on the custom card class
-  AssetImage _imageNathan;
+  NetworkImage _imageNathan;
   AssetImage _imageBed;
   AssetImage _imageBath;
   AssetImage _imageCarFill;
@@ -19,7 +19,7 @@ class _SearchPageState extends State<SearchPage> {
   void initState() {
     super.initState();
     // loading the images used on the custom cards
-    _imageNathan = AssetImage('assets/nathan-fertig-FBXuXp57eM0-unsplash.jpg');
+    _imageNathan = NetworkImage('https://firebasestorage.googleapis.com/v0/b/rentersparadise-165af.appspot.com/o/property_images%2FIMG_20201219_235914.jpg?alt=media&token=fdf5c901-62a2-49b1-9dca-f74c0e50b756,https://firebasestorage.googleapis.com/v0/b/rentersparadise-165af.appspot.com/o/property_images%2FJPEG_20201219_162924_1988978474.jpg?alt=media&token=53f0dbce-f6a2-4be1-8f17-f3e6cc48724a');
     _imageBed = AssetImage('assets/bed-1.png');
     _imageBath = AssetImage('assets/bath.png');
     _imageCarFill = AssetImage('assets/car-fill-from-frontal-view-1.png');

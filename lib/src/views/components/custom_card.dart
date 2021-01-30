@@ -8,10 +8,18 @@ class CustomCard extends StatefulWidget {
   @override
   _CustomCardState createState() => _CustomCardState();
 
-  final AssetImage imageNathan;
+  final NetworkImage imageNathan;
   final AssetImage imageBed;
   final AssetImage imageBath;
   final AssetImage imageCarFill;
+
+  final price;
+  final buildingDescription;
+  final buildingLocation;
+
+  final numberOfBedrooms;
+  final numberOfBathhouses;
+  final numberOfParking;  
 
   /*
   * constructor for the class
@@ -24,17 +32,20 @@ class CustomCard extends StatefulWidget {
       @required this.imageNathan,
       @required this.imageBed,
       @required this.imageBath,
-      @required this.imageCarFill});
+      @required this.imageCarFill,
+      this.price, this.buildingDescription,
+      this.buildingLocation, this.numberOfBedrooms, 
+      this.numberOfBathhouses, this.numberOfParking});
 }
 
 class _CustomCardState extends State<CustomCard> {
-  final _price = "1756";
-  final _buildingDescription = "Three Bedroom Apartment";
-  final _buildingLocation = "23 Cresent Street, Mamprobi";
+  // final _price = "1756";
+  // final _buildingDescription = "Three Bedroom Apartment";
+  // final _buildingLocation = "23 Cresent Street, Mamprobi";
 
-  final _numberOfBedrooms = "3 bed";
-  final _numberOfBathhouses = "2 bath";
-  final _numberOfParking = "2 parking";
+  // final _numberOfBedrooms = "3 bed";
+  // final _numberOfBathhouses = "2 bath";
+  // final _numberOfParking = "2 parking";
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +69,7 @@ class _CustomCardState extends State<CustomCard> {
             Container(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
-                "GHS" + _price + "/month",
+                "GHS" + widget.price + "/month",
                 style: TextStyle(fontSize: 19.0, fontFamily: 'Futura'),
               ),
             ),
@@ -68,7 +79,7 @@ class _CustomCardState extends State<CustomCard> {
             Container(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
-                _buildingDescription,
+                widget.buildingDescription,
                 style: TextStyle(
                     fontFamily: 'Futura',
                     fontSize: 17.0,
@@ -82,7 +93,7 @@ class _CustomCardState extends State<CustomCard> {
             Container(
               padding: EdgeInsets.only(left: 15.0),
               child: Text(
-                _buildingLocation,
+                widget.buildingLocation,
                 style: TextStyle(
                     fontFamily: 'Futura',
                     fontSize: 12.0,
@@ -107,7 +118,7 @@ class _CustomCardState extends State<CustomCard> {
                           ),
                         ),
                         Text(
-                          _numberOfBedrooms,
+                          widget.numberOfBedrooms,
                         )
                       ],
                     ),
@@ -120,7 +131,7 @@ class _CustomCardState extends State<CustomCard> {
                           child: Image(image: widget.imageBath),
                           margin: EdgeInsets.only(right: 8.0),
                         ),
-                        Text(_numberOfBathhouses)
+                        Text(widget.numberOfBathhouses)
                       ],
                     ),
                   ),
@@ -131,7 +142,7 @@ class _CustomCardState extends State<CustomCard> {
                           child: Image(image: widget.imageCarFill),
                           margin: EdgeInsets.only(right: 8.0),
                         ),
-                        Text(_numberOfParking)
+                        Text(widget.numberOfParking)
                       ],
                     ),
                   )

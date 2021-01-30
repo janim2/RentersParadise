@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rentersparadise/src/views/components/custom_card.dart';
 import 'package:rentersparadise/src/views/components/search_textbox.dart';
@@ -27,6 +28,9 @@ class _HomePageState extends State<HomePage> {
   AssetImage _imageBed;
   AssetImage _imageBath;
   AssetImage _imageCarFill;
+
+
+  List properties = [];
 
   @override
   void initState() {
@@ -125,26 +129,56 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: 5.0,
         ),
-        ListView.builder(
+
+
+ StreamBuilder(
+    stream: FirebaseFirestore.instance.collection("properties").snapshots(),
+    builder: (context, snapshot) {
+      if (!snapshot.hasData) {
+        return Center(
+          child:CircularProgressIndicator(),
+        );
+      } else { 
+        
+          properties = snapshot.data.documents;
+
+          print(properties);
+
+          return ListView.builder(
           shrinkWrap: true,
           padding: EdgeInsets.only(left: 20.0, right: 20.0),
-          itemCount: 20,
+          itemCount: properties.length,
           itemBuilder: (context, index) {
             return GestureDetector(
               onTap: () {
                 Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => PropertyScreen()));
+                    builder: (BuildContext context) => PropertyScreen(
+                      docId: properties[index].documentID,
+                    )));
               },
               child: CustomCard(
-                imageNathan: _imageNathan,
+                // properties[index]["picture"].toString()
+                imageNathan: NetworkImage(properties[index]["picture"].toString()),
                 imageBed: _imageBed,
                 imageBath: _imageBath,
                 imageCarFill: _imageCarFill,
+
+                buildingDescription: properties[index]["name"],
+                buildingLocation: properties[index]["location"],
+                numberOfBathhouses: properties[index]["bathroom"],
+                numberOfBedrooms: properties[index]["bedroom"],
+                price: properties[index]["prize"],
+                numberOfParking: properties[index]["parking"],
               ),
             );
           },
           physics: ScrollPhysics(),
-        )
+        );
+      }
+
+        
+
+    })
       ],
     );
   }
