@@ -1,52 +1,17 @@
-import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:rentersparadise/Screens/splash_screen.dart';
-import 'app_state/WalkThroughState.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter/material.dart';
+import 'package:rentersparadise/src/app.dart';
+import 'package:rentersparadise/src/core/bloc/cubit/walkthrough_cubit.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(
-    MultiProvider(providers: [
-      ChangeNotifierProvider<WalkThroughState>(
-          create: (context) => WalkThroughState()),
-
-      // Put The New State Class you create
-      //  ChangeNotifierProvider<YourNewStateClass>(create: (context) =>  YourNewStateClass()),
+    MultiBlocProvider(providers: [
+      BlocProvider(
+        create: (context) => WalkthroughCubit(),
+      ),
     ], child: MyApp()),
   );
-}
-
-class MyApp extends StatelessWidget {
-  static Map<int, Color> color = {
-    50: Color.fromRGBO(230, 120, 23, .1),
-    100: Color.fromRGBO(230, 120, 23, .2),
-    200: Color.fromRGBO(230, 120, 23, .3),
-    300: Color.fromRGBO(230, 120, 23, .4),
-    400: Color.fromRGBO(230, 120, 23, .5),
-    500: Color.fromRGBO(230, 120, 23, .6),
-    600: Color.fromRGBO(230, 120, 23, .7),
-    700: Color.fromRGBO(230, 120, 23, .8),
-    800: Color.fromRGBO(230, 120, 23, .9),
-    900: Color.fromRGBO(230, 120, 23, 1),
-  };
-
-  final MaterialColor colorCustom = MaterialColor(0xffe67f17, color);
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Renters Paradise',
-      theme: ThemeData(
-        primarySwatch: colorCustom,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home:
-          // Put Your Entry Widget here
-          MySplashScreenPage(),
-//    AddPropertySuccess(),
-    );
-  }
 }
