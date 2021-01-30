@@ -4,9 +4,9 @@
 /// It has methods that converts the data to a map
 /// and destruct it back from the map.
 class NotificationModel {
-  int notificationId;
+  String notificationId;
   String status;
-  int recepientId;
+  String recepientId;
   String image;
   String message;
   String dateAdded;
@@ -37,6 +37,6 @@ class NotificationModel {
     recepientId = map['recepient_id'];
     image = map['image'];
     message = map['message'];
-    dateAdded = map['date_added'];
+    dateAdded = map['message'];
   }
 }
