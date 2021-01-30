@@ -1,12 +1,31 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'dart:async';
 
 class Auth {
   final _auth = FirebaseAuth.instance;
 
-  Future<dynamic> registration(String email, String password) async {
+  Future<dynamic> registration(String email, String password, String firstName,
+      String lastName, String phoneNumber, String residentialAddress) async {
     final newUser = await _auth.createUserWithEmailAndPassword(
         email: email, password: password);
+
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
+    String uid = _auth.currentUser.uid.toString();
+
+    // String displayName = _auth.currentUser.displayName;
+
+    users.add({
+      'userId': uid,
+      'email': email,
+      'fname': firstName,
+      'lname': lastName,
+      'phoneNumber': phoneNumber,
+      'residentialAddress': residentialAddress,
+      //'password': password,
+    });
+
     return newUser.user.uid;
   }
 

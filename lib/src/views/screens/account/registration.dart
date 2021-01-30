@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:modal_progress_hud/modal_progress_hud.dart';
 import 'package:rentersparadise/src/constants/the_colors.dart';
+import 'package:rentersparadise/src/core/models/user_model.dart';
 import 'package:rentersparadise/src/core/services/auth.dart';
 import 'package:rentersparadise/src/views/components/custom_box_shadow.dart';
 import 'package:rentersparadise/src/views/components/err_message.dart';
@@ -21,12 +22,23 @@ class _RegistrationState extends State<Registration> {
   String email;
   String password;
   String confirmPassword;
+  String firstName;
+  String lastName;
+  String phoneNumber;
+  String residentialAddress;
 
-  Future registerUser(
-      {String email, String password, String confirmPassword}) async {
+
+  Future registerUser(UserModel user) async {
     try {
       if (password == confirmPassword) {
-        var newUser = await _auth.registration(email, password);
+        var newUser = await _auth.registration(
+            user.email,
+            user.password,
+            user.firstName,
+            user.lastName,
+            user.phoneNumber,
+            user.residentialAddress);
+        
         if (newUser != null) {
           Navigator.of(context).push(MaterialPageRoute(
               builder: (BuildContext context) => UserDashboardScreen()));
@@ -153,6 +165,9 @@ class _RegistrationState extends State<Registration> {
                     children: [
                       CustomBoxShadow(
                         child: TextFormField(
+                          onChanged: (value) {
+                            firstName = value;
+                          },
                           decoration: InputDecoration(
                             hintText: "First Name",
                             border: InputBorder.none,
@@ -166,6 +181,9 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 20),
                       CustomBoxShadow(
                         child: TextFormField(
+                          onChanged: (value) {
+                            lastName = value;
+                          },
                           decoration: InputDecoration(
                             hintText: "Last Name",
                             border: InputBorder.none,
@@ -179,6 +197,9 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 20),
                       CustomBoxShadow(
                         child: TextFormField(
+                          onChanged: (value) {
+                            phoneNumber = value;
+                          },
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             hintText: "Phone Number",
@@ -193,6 +214,9 @@ class _RegistrationState extends State<Registration> {
                       SizedBox(height: 20),
                       CustomBoxShadow(
                         child: TextFormField(
+                          onChanged: (value) {
+                            residentialAddress = value;
+                          },
                           keyboardType: TextInputType.number,
                           decoration: InputDecoration(
                             hintText: "Residential Address",
@@ -302,10 +326,17 @@ class _RegistrationState extends State<Registration> {
                             showSpinner = true;
                           });
 
+                          UserModel _userModel = UserModel(
+                              firstName: this.firstName,
+                              lastName: this.lastName,
+                              phoneNumber: this.phoneNumber,
+                              residentialAddress: this.residentialAddress,
+                              email: this.email,
+                              password: this.password);
+
                           registerUser(
-                              email: email,
-                              password: password,
-                              confirmPassword: confirmPassword);
+                            _userModel
+                          );
                         },
                         child: SizedBox(
                           width: screenWidth - 70,
@@ -328,7 +359,7 @@ class _RegistrationState extends State<Registration> {
                       ),
                     ],
                   ),
-                )
+                ),
               ],
             ),
           ),
